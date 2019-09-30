@@ -1,18 +1,5 @@
 ## Fluent API to apply transformations on PDF pages using the Apache PDFBox
-## Dependencies :
-```xml
-	<!-- Java 1.8 -->
-	<dependency>
-		<groupId>org.bouncycastle</groupId>
-		<artifactId>bcprov-jdk15on</artifactId>
-		<version>1.63</version>
-	</dependency>
-	<dependency>
-		<groupId>org.apache.pdfbox</groupId>
-		<artifactId>pdfbox</artifactId>
-		<version>2.0.17</version>
-	</dependency>
-```
+
 ## Main Interface :
 ```java
 public interface PdfTransformation {
@@ -36,7 +23,23 @@ public interface PdfTransformation {
 - `EmbeddedFilesAndJsPdfTrans` that sets the javascripts and embedded files to null
 - `RemoveTokensPdfTrans` with three existing variants : `containsString`, `regex`, `cosNameStartWith` and you can create new one by passing a `Predicate<Object>` to its constructor. 
 
+## Dependencies :
+```xml
+	<!-- Java 1.8 -->
+	<dependency>
+		<groupId>org.bouncycastle</groupId>
+		<artifactId>bcprov-jdk15on</artifactId>
+		<version>1.63</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.pdfbox</groupId>
+		<artifactId>pdfbox</artifactId>
+		<version>2.0.17</version>
+	</dependency>
+```
+
 ## Steps :
+0. Download the jar file from `releases` folder and add it to your project build path
 1. Build a transformations chain starting from `PdfTransformation.identity()` or `PdfTransformation.defaults()`
 2. To create custom transformations you need to implements the interface `PdfTransformation` then add them to the chain in the first step.
 3. Create an object of PdfTransformer using the `PdfTransformer.from` method and set the `saveTo` file path (Where the resulting PDF file should be saved)
